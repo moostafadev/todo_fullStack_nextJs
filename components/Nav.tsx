@@ -1,6 +1,7 @@
 import { SignedIn, UserButton, SignedOut, SignInButton } from "@clerk/nextjs";
 import React from "react";
 import { ModeToggle } from "./ModeToggle";
+import { Button } from "./ui/button";
 
 const Nav = () => {
   return (
@@ -10,7 +11,9 @@ const Nav = () => {
         <UserButton />
       </SignedIn>
       <SignedOut>
-        <SignInButton />
+        <Button variant={"secondary"}>
+          <SignInButton />
+        </Button>
       </SignedOut>
     </nav>
   );
