@@ -45,7 +45,9 @@ export default function TodosTable({ todos }: { todos: ITodo[] }) {
       <TableFooter>
         <TableRow>
           <TableCell colSpan={3}>Total</TableCell>
-          <TableCell className="text-right">{todos.length}</TableCell>
+          <TableCell className="text-right">
+            {todos.length ? todos.length : "YOU DON'T HAVE ANY TODOS YET!"}
+          </TableCell>
         </TableRow>
       </TableFooter>
     </Table>

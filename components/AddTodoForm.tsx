@@ -29,7 +29,7 @@ import { Checkbox } from "./ui/checkbox";
 import { Plus } from "lucide-react";
 import Spinner from "./Spinner";
 
-const AddTodoForm = () => {
+const AddTodoForm = ({ userId }: { userId: string | null }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const defaultValues: Partial<TodoFormValues> = {
@@ -46,7 +46,7 @@ const AddTodoForm = () => {
 
   const onSubmit = async ({ title, body, completed }: TodoFormValues) => {
     setIsLoading(true);
-    await createTodoListAction({ title, body, completed });
+    await createTodoListAction({ title, body, completed, userId });
     setIsLoading(false);
     setOpen(false);
   };
