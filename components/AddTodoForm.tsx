@@ -26,6 +26,7 @@ import { TodoFormValues, TodoFormSchema } from "@/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createTodoListAction } from "@/actions/todo.action";
 import { Checkbox } from "./ui/checkbox";
+import { Plus } from "lucide-react";
 
 const AddTodoForm = () => {
   const defaultValues: Partial<TodoFormValues> = {
@@ -47,7 +48,10 @@ const AddTodoForm = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
+        <Button className="flex items-center gap-1">
+          <Plus size={16} />
+          <span>Add Todo</span>
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
