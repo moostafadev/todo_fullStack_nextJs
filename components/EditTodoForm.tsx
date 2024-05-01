@@ -24,18 +24,18 @@ import { Textarea } from "./ui/textarea";
 import { Input } from "./ui/input";
 import { TodoFormValues, TodoFormSchema } from "@/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createTodoListAction } from "@/actions/todo.action";
 import { Checkbox } from "./ui/checkbox";
-import { Plus } from "lucide-react";
+import { Pen } from "lucide-react";
 import Spinner from "./Spinner";
+import { ITodo } from "@/interfaces";
 
-const AddTodoForm = () => {
+const EditTodoForm = ({ todo }: { todo: ITodo }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const defaultValues: Partial<TodoFormValues> = {
-    title: "",
-    body: "",
-    completed: false,
+    title: todo.title,
+    body: todo.body as string,
+    completed: todo.completed,
   };
 
   const form = useForm<TodoFormValues>({
@@ -46,7 +46,7 @@ const AddTodoForm = () => {
 
   const onSubmit = async ({ title, body, completed }: TodoFormValues) => {
     setIsLoading(true);
-    await createTodoListAction({ title, body, completed });
+    // await createTodoListAction({ title, body, completed });
     setIsLoading(false);
     setOpen(false);
   };
@@ -55,13 +55,12 @@ const AddTodoForm = () => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="flex items-center gap-1">
-          <Plus size={16} />
-          <span>Add Todo</span>
+          <Pen size={16} />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add todo</DialogTitle>
+          <DialogTitle>Edit todo</DialogTitle>
           <DialogDescription>
             Make changes to your profile here. Click save when you&apos;re done.
           </DialogDescription>
@@ -136,4 +135,4 @@ const AddTodoForm = () => {
   );
 };
 
-export default AddTodoForm;
+export default EditTodoForm;

@@ -37,7 +37,7 @@ export default function TodosTable({ todos }: { todos: ITodo[] }) {
               )}
             </TableCell>
             <TableCell className="flex items-center justify-end gap-2">
-              <TodosTableActions id={todo.id} />
+              <TodosTableActions todo={todo} />
             </TableCell>
           </TableRow>
         ))}
