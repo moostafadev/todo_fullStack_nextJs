@@ -15,7 +15,7 @@ import TodosTableActions from "./TodosTableActions";
 export default function TodosTable({ todos }: { todos: ITodo[] }) {
   return (
     <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
+      <TableCaption>A list of your recent todos.</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead>Count</TableHead>

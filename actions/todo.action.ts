@@ -2,6 +2,7 @@
 
 import { TodoFormValues } from "@/schema";
 import { PrismaClient } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 const prisma = new PrismaClient();
 
@@ -20,6 +21,7 @@ export const createTodoListAction = async ({
       completed,
     },
   });
+  revalidatePath("/");
 };
 export const deleteTodoListAction = async ({ id }: { id: string }) => {
   await prisma.todo.delete({
@@ -27,5 +29,6 @@ export const deleteTodoListAction = async ({ id }: { id: string }) => {
       id,
     },
   });
+  revalidatePath("/");
 };
 export const updateTodoListAction = async () => {};
