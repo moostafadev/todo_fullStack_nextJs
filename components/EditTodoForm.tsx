@@ -117,7 +117,6 @@ const EditTodoForm = ({ todo }: { todo: ITodo }) => {
                         <Checkbox
                           checked={field.value}
                           onCheckedChange={field.onChange}
-                          {...field}
                         />
                       </FormControl>
                       <FormLabel className="!mt-0">Completed</FormLabel>
