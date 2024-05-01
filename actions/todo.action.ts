@@ -8,11 +8,16 @@ const prisma = new PrismaClient();
 export const getTodoListAction = async () => {
   return await prisma.todo.findMany();
 };
-export const createTodoListAction = async ({ title, body }: TodoFormValues) => {
+export const createTodoListAction = async ({
+  title,
+  body,
+  completed,
+}: TodoFormValues) => {
   await prisma.todo.create({
     data: {
       title,
       body,
+      completed,
     },
   });
 };
