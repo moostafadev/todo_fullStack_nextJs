@@ -3,10 +3,18 @@ import { PrismaClient, Prisma } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.user.create({
+  // await prisma.user.create({
+  //   data: {
+  //     email: "admin@admin.com",
+  //     name: "mostafa",
+  //   },
+  // });
+
+  await prisma.todo.create({
     data: {
-      email: "admin@admin.com",
-      name: "mostafa",
+      title: "task one",
+      body: "desc task one",
+      completed: true,
     },
   });
 }
