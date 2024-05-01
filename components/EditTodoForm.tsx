@@ -28,6 +28,7 @@ import { Checkbox } from "./ui/checkbox";
 import { Pen } from "lucide-react";
 import Spinner from "./Spinner";
 import { ITodo } from "@/interfaces";
+import { updateTodoListAction } from "@/actions/todo.action";
 
 const EditTodoForm = ({ todo }: { todo: ITodo }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -46,7 +47,12 @@ const EditTodoForm = ({ todo }: { todo: ITodo }) => {
 
   const onSubmit = async ({ title, body, completed }: TodoFormValues) => {
     setIsLoading(true);
-    // await createTodoListAction({ title, body, completed });
+    await updateTodoListAction({
+      id: todo.id,
+      title,
+      body: body as string,
+      completed,
+    });
     setIsLoading(false);
     setOpen(false);
   };

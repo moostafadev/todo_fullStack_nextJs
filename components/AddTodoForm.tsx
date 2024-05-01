@@ -53,7 +53,7 @@ const AddTodoForm = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+      <DialogTrigger asChild className="mb-2 ml-auto">
         <Button className="flex items-center gap-1">
           <Plus size={16} />
           <span>Add Todo</span>
