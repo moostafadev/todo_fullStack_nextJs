@@ -15,6 +15,7 @@ async function main() {
       title: "task one",
       body: "desc task one",
       completed: true,
+      user_id: "user_2fsfGbTSYLy3c82MydRgqczLZu2",
     },
   });
 }
