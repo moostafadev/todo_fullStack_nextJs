@@ -21,5 +21,11 @@ export const createTodoListAction = async ({
     },
   });
 };
+export const deleteTodoListAction = async ({ id }: { id: string }) => {
+  await prisma.todo.delete({
+    where: {
+      id,
+    },
+  });
+};
 export const updateTodoListAction = async () => {};
-export const deleteTodoListAction = async () => {};
