@@ -7,8 +7,13 @@ import { revalidatePath } from "next/cache";
 const prisma = new PrismaClient();
 
 export const getTodoListAction = async () => {
-  return await prisma.todo.findMany();
+  return await prisma.todo.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 };
+
 export const createTodoListAction = async ({
   title,
   body,
@@ -23,6 +28,7 @@ export const createTodoListAction = async ({
   });
   revalidatePath("/");
 };
+
 export const deleteTodoListAction = async ({ id }: { id: string }) => {
   await prisma.todo.delete({
     where: {
@@ -31,4 +37,5 @@ export const deleteTodoListAction = async ({ id }: { id: string }) => {
   });
   revalidatePath("/");
 };
+
 export const updateTodoListAction = async () => {};

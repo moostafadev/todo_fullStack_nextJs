@@ -17,6 +17,7 @@ const TodosTableActions = ({ id }: { id: string }) => {
       <Button
         size={"icon"}
         variant={"destructive"}
+        disabled={isLoading}
         onClick={async () => {
           setIsLoading(true);
           await deleteTodoListAction({ id });

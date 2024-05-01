@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -27,8 +27,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createTodoListAction } from "@/actions/todo.action";
 import { Checkbox } from "./ui/checkbox";
 import { Plus } from "lucide-react";
+import Spinner from "./Spinner";
 
 const AddTodoForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [open, setOpen] = useState(false);
   const defaultValues: Partial<TodoFormValues> = {
     title: "",
     body: "",
@@ -42,11 +45,14 @@ const AddTodoForm = () => {
   });
 
   const onSubmit = async ({ title, body, completed }: TodoFormValues) => {
+    setIsLoading(true);
     await createTodoListAction({ title, body, completed });
+    setIsLoading(false);
+    setOpen(false);
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="flex items-center gap-1">
           <Plus size={16} />
@@ -119,7 +125,9 @@ const AddTodoForm = () => {
                   </FormItem>
                 )}
               />
-              <Button type="submit">Save changes</Button>
+              <Button type="submit" disabled={isLoading}>
+                {isLoading ? <Spinner /> : "Done"}
+              </Button>
             </form>
           </Form>
         </div>
