@@ -1,5 +1,9 @@
 import { SignIn } from "@clerk/nextjs";
 
 export default function Page() {
-  return <SignIn path="/sign-in" signUpFallbackRedirectUrl={"/"} />;
+  return (
+    <div className="container flex items-center justify-center mt-8">
+      <SignIn path="/sign-in" signUpFallbackRedirectUrl={"/"} />
+    </div>
+  );
 }
